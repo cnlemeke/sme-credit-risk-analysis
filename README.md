@@ -1,6 +1,6 @@
 # SME Financial Risk and Business Intelligence Analysis
 
-An end-to-end analysis of 350 synthetic small and medium enterprises (SMEs). It covers data cleaning, exploration, feature engineering, a modelling test and a rule-based risk scorecard.
+An end-to-end analysis of 350 synthetic data of small and medium enterprises (SMEs). It covers data cleaning, exploration, feature engineering, a modelling test and a rule-based risk scorecard.
 
 The headline result is honest rather than flattering: with this data, non-financial features do not predict which firms make a loss. The notebook shows how I tested that and why a perfect-looking score would have been a mistake.
 
