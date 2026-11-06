@@ -4,7 +4,7 @@ An end-to-end analysis of 350 synthetic data of small and medium enterprises (SM
 
 The headline result is honest rather than flattering: with this data, non-financial features do not predict which firms make a loss. The notebook shows how I tested that and why a perfect-looking score would have been a mistake.
 
-**Results at a glance**
+**Key Findings**
 
 - **Cleaning.** 350 raw records became 328 analysis records. The issue log in section 2 lists 14 problems, each with a row count. 5 near-duplicates were removed and 17 records outside the SME definition went to a separate file.
 - **Losses and leverage.** 114 of 328 SMEs (34.8%) made a loss. 60 firms (18.3%) have debt-to-equity above 2.
@@ -13,17 +13,14 @@ The headline result is honest rather than flattering: with this data, non-financ
 - **Group differences.** The gaps I tested by sector, company size and digital adoption were not distinguishable from chance.
 - **A warning.** Adding one profit-based column lifts AUC from 0.513 to 0.995. That jump is leakage, not skill.
 
-## What is in this repo
+## Repository Structure
 
 | Path | What it is |
 |------|------------|
-| `notebooks/SME_Risk_Analysis.ipynb` | The full analysis, saved with its outputs |
-| `reports/SME_Risk_Analysis_Report.html` | The same notebook as a web page |
+| `notebooks/code.ipynb` | The full analysis, saved with its outputs |
 | `reports/key_figures.json` | Every number quoted in the written findings, saved by the notebook |
 | `data/sme_dataset.csv` | Raw synthetic data, 350 rows and 30 columns |
-| `data/sme_data_dictionary.csv` | One row per column with valid values, missing counts and known problems |
 | `data/sme_cleaned.csv` | The 328 analysis records after cleaning |
-| `data/sme_excluded_records.csv` | The 17 records outside the SME definition, with the reason |
 | `data/sme_risk_scored.csv` | Cleaned data with engineered features and the stress tier |
 | `figures/` | The ten charts as PNG files |
 | `src/generate_sme_data.py` | The script that builds the raw data and plants the defects |
@@ -48,7 +45,7 @@ source .venv/bin/activate        # on Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 python src/generate_sme_data.py  # optional, rebuilds data/sme_dataset.csv
 cd notebooks
-python -m jupyter nbconvert --to notebook --execute --inplace SME_Risk_Analysis.ipynb
+python -m jupyter nbconvert --to notebook --execute --code.ipynb
 ```
 
 Tested on Python 3.13.17 with pandas 3.0.5, numpy 2.5.3, scikit-learn 1.9.1, scipy 1.18.1, matplotlib 3.11.2, seaborn 0.13.2, nbformat 5.11.1, nbconvert 7.17.2, ipykernel 7.4.0.
@@ -57,7 +54,4 @@ Tested on Python 3.13.17 with pandas 3.0.5, numpy 2.5.3, scikit-learn 1.9.1, sci
 
 The notebook lists them in section 7.3. The main ones: the data is synthetic, it is a single snapshot, the debt-to-equity limit of 2 is my choice, and with 328 firms the tests detect only fairly large effects.
 
-## AI assistance
 
-The synthetic data generator, the first draft of the notebook and this README were produced with AI assistance (Claude, by Anthropic).
-<!-- Add a sentence here on what you changed, checked or decided yourself. -->
